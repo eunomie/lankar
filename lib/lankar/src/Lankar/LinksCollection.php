@@ -19,4 +19,13 @@ class LinksCollection {
       '4' => new Link(4, 'http://www.usinenouvelle.com/article/fleur-pellerin-dans-les-allees-de-futur-en-seine.N176704#xtor=RSS-215')
     );
   }
+	
+	public function getAsArray() {
+		$collection = $this->get();
+		$arr = array();
+		foreach ($collection as $link) {
+			array_push($arr, $link->asArray());
+		}
+		return $arr;
+	}
 }

@@ -7,7 +7,7 @@ use Lankar\HashUtils;
 
 class Link {
   private $id;
-  private $sha1;
+  private $hash;
   private $url;
 
   function __construct($id, $url) {
@@ -27,4 +27,12 @@ class Link {
   public function url() {
     return $this->url;
   }
+
+	public function asArray() {
+		return array(
+			'id' => $this->id,
+			'hash' => $this->hash,
+			'url' => $this->url
+		);
+	}
 }

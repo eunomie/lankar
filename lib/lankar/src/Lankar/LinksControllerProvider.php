@@ -13,15 +13,9 @@ class LinksControllerProvider implements ControllerProviderInterface {
   public function connect(Application $app) {
     $controller = new ControllerCollection();
 
-    $controller->get('/', function() {
-      $links = LinksCollection::getCollection();
-      $output = '<ul>';
-      foreach ($links->get() as $id => $link) {
-        $output .= '<li><a href="'.$link->url().'" id="'.$link->hash().'">'.$link->url().'</a></li>';
-      }
-      $output .= '</ul>';
-
-      return $output;
+    $controller->get('/', function() use ($app) {
+			$links = LinksCollection::getCollection()->getAsArray();
+			return $app['twig']->render('links.twig', array('links' => $links));
     });
 
     return $controller;
