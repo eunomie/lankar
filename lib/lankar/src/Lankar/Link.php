@@ -3,9 +3,9 @@
 namespace Lankar;
 
 class Link {
-  public $id;
-  private $hash;
-  public $url;
+  private $id;
+  private $sha1;
+  private $url;
 
   function __construct($id, $hash, $url) {
     $this->id = $id;
