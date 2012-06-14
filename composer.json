@@ -1,0 +1,10 @@
+{
+  "require": {
+    "silex/silex": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "Lankar": "lib/lankar/src"
+    }
+  }
+}
