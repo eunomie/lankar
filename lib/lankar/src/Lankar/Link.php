@@ -7,9 +7,9 @@ class Link {
   private $sha1;
   private $url;
 
-  function __construct($id, $hash, $url) {
+  function __construct($id, $url) {
     $this->id = $id;
-    $this->hash = $hash;
+    $this->hash = sha1($url);
     $this->url = $url;
   }
 
