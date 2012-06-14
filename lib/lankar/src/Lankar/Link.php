@@ -8,7 +8,7 @@ class Link {
   private $url;
 
 
-  public static function smallHash($text) {
+  private static function smallHash($text) {
     // Shaarli 0.0.38 beta - Shaare your links...
     // The personal, minimalist, super-fast, no-database delicious clone. By sebsauvage.net
     // http://sebsauvage.net/wiki/doku.php?id=php:shaarli
