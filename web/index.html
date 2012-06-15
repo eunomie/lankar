@@ -39,7 +39,7 @@
 				</div>
 			</header>
 
-			<section id="links" ng-init="links=[{para:['Ceci est simplement mon blog personnel. Je le met à jour de manière assez irrégulière, même si ça commence à redevenir suffisamment fréquent.', 'Pour info le premier billet date de septembre 2005'], url: 'http://www.winsos.net/~yves', labels: ['next', 'perso'], date: '15 juin 2012'}, {para: ['Mon compte twitter. Pas grand chose dessus, je m\'en sert pas mal pour suivre des gens. Disons que je m\'y met petit à petit.'], url: 'http://twitter.com/_crev_', labels: ['next', 'perso', 'twitter'], date: '15 juin 2012'}]">
+			<section id="links" ng-init="links=[{para:['Ceci est simplement mon blog personnel. Je le met à jour de manière assez irrégulière, même si ça commence à redevenir suffisamment fréquent.', 'Pour info le premier billet date de septembre 2005'], url: 'http://www.winsos.net/~yves', labels: ['next', 'perso'], date: '15 juin 2012', hash: '-BymHg'}, {para: ['Mon compte twitter. Pas grand chose dessus, je m\'en sert pas mal pour suivre des gens. Disons que je m\'y met petit à petit.'], url: 'http://twitter.com/_crev_', labels: ['next', 'perso', 'twitter'], date: '15 juin 2012', hash:'1dIdrA'}]">
 				<div class="row" ng-repeat="link in links">
 					<div class="span8">
 						<p ng-repeat="para in link.para">{{ para }}</p>
@@ -48,6 +48,8 @@
 						<dl class="dl-horizontal">
 							<dt><i class="icon-share-alt"></i></dt>
 							<dd><a href="{{ link.url }}">{{ link.url }}</a></dd>
+							<dt><i class="icon-bookmark"></i></dt>
+							<dd><a href="../index.php/go/{{ link.hash }}">permalink</a></dd>
 							<dt><i class="icon-tags"></i></dt>
 							<dd>
 								<span ng-repeat="label in link.labels"><span class="label">{{ label }}</span> </span>
