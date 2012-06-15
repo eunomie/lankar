@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Länkar</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="lankar.css">
     <script src="angular-1.0.0.min.js"></script>
   </head>
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -21,7 +21,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li>
-                <a href="./index.html">Accueil</a>
+                <a href="./index.html">Liens</a>
               </li>
               <li>
                 <a href="./admin.html">Admin</a>
@@ -32,25 +32,35 @@
       </div>
     </div>
     <div class="container">
-      <header class="jumbotron subhead" id="overview">
-        <h1>Lankär</h1>
-        <p class="lead">Länkar</p>
-        <div class="subnav">
-          <ul class="nav nav-pills">
-            <li><a href="#links">Links</a></li>
-          </ul>
-        </div>
-      </header>
+			<header>
+				<div class="hero-unit">
+					<h1>Länkar</h1>
+					<p>Länkar is really nice links manager. Below is the list of all links stored in this <a href="https://github.com/CrEv/lankar">Länkar</a> instance.</p>
+				</div>
+			</header>
 
-      <section id="links">
-        <label>Name:</label>
-        <input type="text" ng-model="yourName" placeholder="Enter a name here">
-        <hr>
-        <h2>Hello {{yourName}}!</h2>
-      </section>
+			<section id="links" ng-init="links=[{para:['Ceci est simplement mon blog personnel. Je le met à jour de manière assez irrégulière, même si ça commence à redevenir suffisamment fréquent.', 'Pour info le premier billet date de septembre 2005'], url: 'http://www.winsos.net/~yves', labels: ['next', 'perso'], date: '15 juin 2012'}, {para: ['Mon compte twitter. Pas grand chose dessus, je m\'en sert pas mal pour suivre des gens. Disons que je m\'y met petit à petit.'], url: 'http://twitter.com/_crev_', labels: ['next', 'perso', 'twitter'], date: '15 juin 2012'}]">
+				<div class="row" ng-repeat="link in links">
+					<div class="span8">
+						<p ng-repeat="para in link.para">{{ para }}</p>
+					</div>
+					<div class="span4">
+						<dl class="dl-horizontal">
+							<dt><i class="icon-share-alt"></i></dt>
+							<dd><a href="{{ link.url }}">{{ link.url }}</a></dd>
+							<dt><i class="icon-tags"></i></dt>
+							<dd>
+								<span ng-repeat="label in link.labels"><span class="label">{{ label }}</span> </span>
+							</dd>
+							<dt><i class="icon-calendar"></i></dt>
+							<dd>{{ link.date }}</dd>
+						</dl>
+					</div>
+				</div>
+			</section>
 
       <footer class="footer">
-        <p>Plop !!</p>
+        <p>Powered by <a href="https://github.com/CrEv/lankar">Länkar</a></p>
       </footer>
 
     </div>
