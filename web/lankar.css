@@ -28,3 +28,11 @@
   margin-top: 2em;
   padding: 1em;
 }
+
+.links-list .dl-horizontal dt {
+  width: 20px;
+}
+
+.links-list .dl-horizontal dd {
+  margin-left: 30px;
+}
