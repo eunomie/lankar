@@ -15,6 +15,8 @@ angular.module 'lankar', [], ($compileProvider, $routeProvider) ->
 this.LinksCtrl = ($scope, $http, $routeParams) ->
   $http.get('data/links.json').success (data) ->
     $scope.links = data.links
-    $scope.total = data.total
+    $scope.total = parseInt data.total
     $scope.page = parseInt $routeParams.page
+    $scope.isfirst = $scope.page == 1
+    $scope.islast = $scope.page == $scope.total
 
