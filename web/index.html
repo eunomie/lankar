@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="lankar" ng-controller="LinksCtrl">
+<html ng-app="lankar">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,50 +36,6 @@
         </div>
       </div>
     </div>
-    <div class="container">
-			<header>
-				<div class="hero-unit">
-					<h1>Länkar</h1>
-					<p>Länkar is really nice links manager. Below is the list of all links stored in this <a href="https://github.com/CrEv/lankar">Länkar</a> instance.</p>
-				</div>
-			</header>
-
-			<section id="links" class="links-list">
-				<div class="row" ng-repeat="link in links | filter:query">
-					<div class="span8">
-						<div compile="link.desc"></div>
-					</div>
-					<div class="span4">
-						<dl class="dl-horizontal">
-							<dt><i class="icon-share-alt"></i></dt>
-							<dd><a href="{{ link.url }}">{{ link.url }}</a></dd>
-							<dt><i class="icon-bookmark"></i></dt>
-							<dd><a href="../index.php/go/{{ link.hash }}">permalink</a></dd>
-							<dt><i class="icon-tags"></i></dt>
-							<dd>
-								<span ng-repeat="label in link.labels"><span class="label"><i class="icon-tag icon-white"></i> {{ label }}</span> </span>
-							</dd>
-							<dt><i class="icon-calendar"></i></dt>
-							<dd>{{ link.date }}</dd>
-						</dl>
-					</div>
-				</div>
-			</section>
-      <section>
-        <div class="row">
-          <div class="span12">
-            <ul class="pager">
-              <li class="previous"><a href="#/{{ pagenumber + 1 }}">&larr; Older</a></li>
-              <li class="next"><a href="#/{{ pagenumber - 1 }}">Newer &rarr;</a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer hero-unit">
-        <p>Powered by <a href="https://github.com/CrEv/lankar">Länkar</a></p>
-      </footer>
-
-    </div>
+    <div ng-view></div>
   </body>
 </html>
