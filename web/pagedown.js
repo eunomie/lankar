@@ -1,11 +1,18 @@
 angular.module('lankar', [], function($compileProvider) {
-	$compileProvider.directive('markdown', function($compile) {
+	$compileProvider.directive('compile', function($compile) {
 		var converter = new Markdown.Converter();
-		return {
-			restrict: 'E',
-			link: function(scope, element, attrs) {
-//				$compile(element.contents())(scope);
-			}
+		return function(scope, element, attrs) {
+			scope.$watch(
+				function(scope) {
+					var a = scope.$eval(attrs.compile);
+					a = converter.makeHtml(a);
+					return a;
+				},
+				function(value) {
+					element.html(value);
+					$compile(element.contents())(scope);
+				}
+			);
 		};
 	});
 });
@@ -14,8 +21,11 @@ function LinksCtrl($scope) {
 	$scope.links = [
 		{
 			para:[
-				'Ceci **est** simplement mon blog personnel. Je le met à jour de manière assez irrégulière, même si ça commence à redevenir suffisamment fréquent.',
-				'Pour info le premier billet date de septembre 2005'
+				'Ceci **est** simplement mon blog personnel. Je le met à jour de manière assez irrégulière, même si ça commence à redevenir suffisamment fréquent.' +
+				'\n\n' +
+				'Pour info le premier billet date de _septembre 2005_' +
+				'\n\n' +
+				'> Test de citation'
 			],
 			url: 'http://www.winsos.net/~yves',
 			labels: ['next', 'perso'],

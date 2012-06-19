@@ -38,14 +38,13 @@
 				<div class="hero-unit">
 					<h1>Länkar</h1>
 					<p>Länkar is really nice links manager. Below is the list of all links stored in this <a href="https://github.com/CrEv/lankar">Länkar</a> instance.</p>
-					<markdown># test</markdown>
 				</div>
 			</header>
 
 			<section id="links" ng-controller="LinksCtrl">
 				<div class="row" ng-repeat="link in links">
 					<div class="span8">
-						<markdown ng-repeat="para in link.para">{{ para }}</markdown>
+						<div ng-repeat="para in link.para" compile="para"></div>
 					</div>
 					<div class="span4">
 						<dl class="dl-horizontal">
