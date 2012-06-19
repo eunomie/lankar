@@ -13,3 +13,18 @@
 .navbar-fixed-top .brand:hover {
   text-decoration: none;
 }
+
+.links-list .row {
+  border-top: 1px solid #eeeeee;
+  padding-top: 1em;
+}
+
+.links-list .row:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.footer {
+  margin-top: 2em;
+  padding: 1em;
+}

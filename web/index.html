@@ -41,7 +41,7 @@
 				</div>
 			</header>
 
-			<section id="links" ng-controller="LinksCtrl">
+			<section id="links" class="links-list" ng-controller="LinksCtrl">
 				<div class="row" ng-repeat="link in links">
 					<div class="span8">
 						<div ng-repeat="para in link.para" compile="para"></div>
@@ -63,7 +63,7 @@
 				</div>
 			</section>
 
-      <footer class="footer">
+      <footer class="footer hero-unit">
         <p>Powered by <a href="https://github.com/CrEv/lankar">Länkar</a></p>
       </footer>
 
