@@ -9,7 +9,10 @@ angular.module 'lankar', [], ($compileProvider, $routeProvider) ->
       , (value) ->
         element.html value
         $compile(element.contents())(scope)
-  $routeProvider.when('/links/:page', { templateUrl: 'partials/links.html', controller: this.LinksCtrl}).otherwise({redirectTo: '/links/1'})
+  $routeProvider
+    .when('/links/:page', { templateUrl: 'partials/links.html', controller: this.LinksCtrl})
+    .when('/add', { templateUrl: 'partials/form.html'})
+    .otherwise({redirectTo: '/links/1'})
 
 
 this.LinksCtrl = ($scope, $http, $routeParams) ->
