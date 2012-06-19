@@ -13,7 +13,7 @@ angular.module 'lankar', [], ($compileProvider, $routeProvider) ->
 
 
 this.LinksCtrl = ($scope, $http, $routeParams) ->
-  $http.get('data/links.json').success (data) ->
+  $http.get('data/links_' + $routeParams.page + '.json').success (data) ->
     $scope.links = data.links
     $scope.total = parseInt data.total
     $scope.page = parseInt $routeParams.page
