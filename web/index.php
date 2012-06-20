@@ -14,6 +14,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
   'db.options' => $lankar_db_options
 ));
-$app->mount('/links', new Lankar\LinksControllerProvider());
+$app->mount('/', new Lankar\LinksControllerProvider());
 
 $app->run();
