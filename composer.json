@@ -1,7 +1,8 @@
 {
   "require": {
     "silex/silex": "dev-master",
-    "twig/twig": ">=1.8,<2.0-dev"
+    "twig/twig": ">=1.8,<2.0-dev",
+    "doctrine/dbal": "2.2.*"
   },
   "autoload": {
     "psr-0": {
