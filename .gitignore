@@ -1,5 +1,5 @@
 composer.phar
 composer.lock
 vendor
-web/pagedown.js
+web/script/lankar.js
 web/config/config.php
