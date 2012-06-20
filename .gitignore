@@ -1,5 +1,5 @@
 composer.phar
 composer.lock
 vendor
-web/pagedown_coffee.js
+web/pagedown.js
 web/config/config.php
