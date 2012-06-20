@@ -2,3 +2,4 @@ composer.phar
 composer.lock
 vendor
 web/pagedown_coffee.js
+web/config/config.php
