@@ -12,6 +12,5 @@ Technologies
 List of technologies or programs or libraries in Länkar :
 
 * [Silex](silex.sensiolabs.org)
-* [Twig](http://twig.sensiolabs.org/)
 * [AngularJS](http://www.angularjs.org)
 * [PageDown](http://code.google.com/p/pagedown/wiki/PageDown)
