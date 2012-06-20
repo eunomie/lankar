@@ -5,34 +5,41 @@ namespace Lankar;
 use Lankar\UrlUtils;
 use Lankar\HashUtils;
 
+
+/** @Entity **/
 class Link {
-  private $id;
-  private $hash;
-  private $url;
+  /** @Id @GeneratedValue @Column(type="integer") **/
+  protected $id;
+  /** @Column(type="string") **/
+  protected $url;
+  /** @Column(type="string") **/
+  protected $hash;
+  /** @Column(type="text") **/
+  protected $desc;
+  //protected $labels;
+  /** @Column(type="string") **/
+  protected $date;
+  
 
-  function __construct($id, $url) {
-    $this->id = $id;
-    $this->hash = HashUtils::small($url);
+  function __construct($url, $desc, $labels, $date) {
     $this->url = UrlUtils::clean_url($url);
-  }
-
-  public function id() {
-    return $this->id;
+    $this->hash = HashUtils::small($this->url);
+    $this->desc = $desc;
+    $this->labels = array(); //$labels;
+    $this->date = $date;
   }
 
   public function hash() {
     return $this->hash;
   }
 
-  public function url() {
-    return $this->url;
-  }
-
 	public function asArray() {
 		return array(
-			'id' => $this->id,
-			'hash' => $this->hash,
-			'url' => $this->url
+			'url'    => $this->url,
+      'hash'   => $this->hash,
+      'desc'   => $this->desc,
+      'labels' => $this->labels,
+      'hash'   => $this->hash
 		);
 	}
 }
