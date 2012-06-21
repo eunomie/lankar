@@ -11,7 +11,8 @@ Technologies
 
 List of technologies or programs or libraries in Länkar :
 
-* [Silex](silex.sensiolabs.org)
-* [Doctrine](http://www.doctrine-project.org/)
-* [AngularJS](http://www.angularjs.org)
-* [PageDown](http://code.google.com/p/pagedown/wiki/PageDown)
+* [Silex](silex.sensiolabs.org) : server side of the project, REST api
+* [Doctrine](http://www.doctrine-project.org/) : database storage management
+* [AngularJS](http://www.angularjs.org) : client side, web interface
+* [Bootstrap](http://twitter.github.com/bootstrap/) : default style
+* [PageDown](http://code.google.com/p/pagedown/wiki/PageDown) : markdown javascript library
