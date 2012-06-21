@@ -8,3 +8,6 @@ $lankar_db_options = array(
   'password' => '',
   'dbname' => 'lankar'
 );
+
+// Debug mode
+$lankar_debug = false;
