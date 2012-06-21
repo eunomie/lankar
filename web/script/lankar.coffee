@@ -24,18 +24,14 @@ this.LinksCtrl = ($scope, $http, $routeParams) ->
     $scope.islast = $scope.page == $scope.total
 
 this.addCtrl = ($scope, $http, $routeParams, $location) ->
-  search = $location.search().toString()
-  params = search.replace(/^\?/, '').split('&')
-  url = ''
-  title = ''
-  for param in params
-    p = param.split '='
-    url = p[1] if p[0] == 'url'
-    title = p[1] if p[0] == 'title'
+  url = decodeURIComponent($location.search().url || '')
+  title = decodeURIComponent($location.search().title || '')
+  desc = ''
+  desc = title + '\n=\n[' + title + '](' + url + ')' if url != '' and title != ''
   master = {
     'url': url
     'title': title
-    'desc': ''
+    'desc': desc
     'tags': ''
   }
 
