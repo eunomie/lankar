@@ -24,9 +24,19 @@ this.LinksCtrl = ($scope, $http, $routeParams) ->
     $scope.islast = $scope.page == $scope.total
 
 this.addCtrl = ($scope, $http, $routeParams, $location) ->
+  search = $location.search().toString()
+  params = search.replace(/^\?/, '').split('&')
+  url = ''
+  title = ''
+  for param in params
+    p = param.split '='
+    url = p[1] if p[0] == 'url'
+    title = p[1] if p[0] == 'title'
   master = {
-    'url': ''
+    'url': url
+    'title': title
     'desc': ''
+    'tags': ''
   }
 
   $scope.cancel = () ->
@@ -36,7 +46,9 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
     $http({
       'method': 'POST'
       'url': 'lankar.php/link'
-      'data': 'url=' + $scope.form.url + '&desc=' + encodeURIComponent $scope.form.desc
+      'data': 'url=' + encodeURIComponent($scope.form.url) +
+        '&desc=' + encodeURIComponent($scope.form.desc) +
+        '&tags=' + encodeURIComponent($scope.form.tags)
       'headers': {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
