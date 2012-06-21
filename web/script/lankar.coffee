@@ -37,11 +37,8 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
   $scope.$watch 'form.tags', () ->
     labels = $scope.form.tags.split /[ ,]+/
     tags = []
-    tagsname = {}
     angular.forEach labels, (value) ->
-      if !(value of tagsname) && value != ''
-        tags.push value
-        tagsname[value] = true
+      tags.push value if !(value in tags) && value != ''
     $scope.form.labels = tags
 
   $scope.cancel = () ->
