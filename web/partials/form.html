@@ -1,22 +1,43 @@
 <section>
-  <div class="row">
-    <div class="span8 offset2">
-      <form class="form-horizontal" name="linkForm">
-        <fieldset>
+  <form class="form-horizontal" name="linkForm">
+    <fieldset>
+      <div class="row">
+        <div class="span12">
           <legend>Add a new link</legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span7">
           <div class="control-group">
             <label class="control-label" for="url">Address</label>
             <div class="controls">
               <div class="input-prepend">
                 <span class="add-on"><i class="icon-share-alt"></i></span>
-                <input class="span3" ng-model="form.url" type="text" required />
+                <input id="url" name="url" class="span3" ng-model="form.url" type="text" required />
               </div>
             </div>
           </div>
-        </fieldset>
-      </form>
-      <button class="btn" ng-click="cancel()" ng-disabled="isCancelDisabled()">Cancel</button>
-      <button class="btn btn-primary" ng-click="save()" ng-disabled="isSaveDisabled()">Add</button>
-    </div>
-  </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span7">
+          <div class="control-group">
+            <label class="control-label" for="desc">Description</label>
+            <div class="controls">
+              <textarea id="desc" name="desc" class="inputmarkdown" ng-model="form.desc"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="span5">
+          <div compile="form.desc" class="previewmarkdown"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3 offset9">
+          <button class="btn" ng-click="cancel()" ng-disabled="isCancelDisabled()">Cancel</button>
+          <button class="btn btn-primary" ng-click="save()" ng-disabled="isSaveDisabled()">Add</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 </section>

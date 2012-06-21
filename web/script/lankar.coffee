@@ -24,7 +24,10 @@ this.LinksCtrl = ($scope, $http, $routeParams) ->
     $scope.islast = $scope.page == $scope.total
 
 this.addCtrl = ($scope, $http, $routeParams, $location) ->
-  master = {'url': ''}
+  master = {
+    'url': ''
+    'desc': ''
+  }
 
   $scope.cancel = () ->
     $scope.form = angular.copy master
@@ -33,7 +36,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
     $http({
       'method': 'POST'
       'url': 'lankar.php/link'
-      'data': 'url=' + $scope.form.url
+      'data': 'url=' + $scope.form.url + '&desc=' + encodeURIComponent $scope.form.desc
       'headers': {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
