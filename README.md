@@ -21,6 +21,7 @@ List of technologies or programs or libraries in Länkar :
 ToDo
 ----
 
+* improve debug mode using coffeescript and less js compiler
 * tags (model, db, ui)
  * auto complete (bootstrap)
 * install/migrate
@@ -31,3 +32,5 @@ ToDo
 * use AngularJS resources
 * implement 'go' to redirect from hash in url
 * add functionnalities on 'go' to add some url shortner functions (clicks, referer, etc)
+* use twig to render html/partial pages
+ * and add localisation
