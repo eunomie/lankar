@@ -63,6 +63,11 @@
                 </span><input id="tags" name="tags" class="input-xlarge" ng-model="form.tags" type="text" />
               </div>
             </div>
+            <div class="controls">
+              <div class="input-prepend">
+                <span ng-repeat="label in form.labels"><span class="label"><i class="icon-tag icon-white"></i> {{ label }} </span>&nbsp;</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

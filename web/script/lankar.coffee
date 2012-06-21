@@ -34,6 +34,15 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
     'desc': desc
     'tags': ''
   }
+  $scope.$watch 'form.tags', () ->
+    labels = $scope.form.tags.split /[ ,]+/
+    tags = []
+    tagsname = {}
+    angular.forEach labels, (value) ->
+      if !(value of tagsname) && value != ''
+        tags.push value
+        tagsname[value] = true
+    $scope.form.labels = tags
 
   $scope.cancel = () ->
     $scope.form = angular.copy master
