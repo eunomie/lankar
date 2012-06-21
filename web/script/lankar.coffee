@@ -2,7 +2,7 @@
 
 angular.module 'lankar', [], ($compileProvider, $routeProvider, $locationProvider) ->
   $compileProvider.directive 'compile', ($compile) ->
-    converter = new Markdown.Converter()
+    converter = new Markdown.getSanitizingConverter()
     (scope, element, attrs) ->
       scope.$watch (scope) ->
         converter.makeHtml(scope.$eval(attrs.compile))
