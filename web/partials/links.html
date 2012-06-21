@@ -12,6 +12,7 @@
   <section id="links" class="links-list">
     <div class="row" ng-repeat="link in links | filter:query">
       <div class="span8">
+        <h4>{{link.title}}</h4>
         <div compile="link.desc"></div>
       </div>
       <div class="span4">
@@ -22,7 +23,7 @@
           <dd><a href="../index.php/go/{{ link.hash }}">permalink</a></dd>
           <dt><i class="icon-tags"></i></dt>
           <dd>
-            <span ng-repeat="label in link.labels"><span class="label"><i class="icon-tag icon-white"></i> {{ label }}</span> </span>
+            <span ng-repeat="label in link.labels"><span class="label"><i class="icon-tag icon-white"></i> {{ label }} </span> </span>
           </dd>
           <dt><i class="icon-calendar"></i></dt>
           <dd>{{ link.date }}</dd>

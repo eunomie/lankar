@@ -13,6 +13,8 @@ class Link {
   /** @Column(type="string") **/
   protected $url;
   /** @Column(type="string") **/
+  protected $title;
+  /** @Column(type="string") **/
   protected $hash;
   /** @Column(type="text") **/
   protected $desc;
@@ -21,8 +23,9 @@ class Link {
   protected $date;
   
 
-  function __construct($url, $desc, $labels, $date) {
+  function __construct($url, $title, $desc, $labels, $date) {
     $this->url = UrlUtils::clean_url($url);
+    $this->title = $title;
     $this->hash = HashUtils::small($this->url);
     $this->desc = $desc;
     $this->labels = array(); //$labels;
@@ -36,6 +39,7 @@ class Link {
 	public function asArray() {
 		return array(
 			'url'    => $this->url,
+      'title'  => $this->title,
       'hash'   => $this->hash,
       'desc'   => $this->desc,
       'labels' => $this->labels,

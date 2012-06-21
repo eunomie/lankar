@@ -23,7 +23,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
     });
 
     $controllers->get('/dblinks/{pagenumber}', function(Request $request) use ($app) {
-      $links = $app['db']->fetchAll('SELECT "id", "url", "hash", "desc", "date" from links');
+      $links = $app['db']->fetchAll('SELECT "id", "url", "title", "hash", "desc", "date" from links');
       return $app->json(array(
         'links' => $links,
         'pagenumber' => 1,
@@ -39,12 +39,19 @@ class LinksControllerProvider implements ControllerProviderInterface {
       if (!isset($desc)) {
         $desc = '';
       }
-      $labels = $request->get('labels');
+      $title = $request->get('title');
+      if (!isset($title)) {
+        $title = '';
+      }
+      $labels = $request->get('tags');
       if (!isset($desc) || !is_array($labels)) {
         $labels = array();
+      } else {
+        $labels = split('/[ ,]+/', $labels);
       }
       $date = date("d F Y H:m:s");
-      $link = new Link($url, $desc, $labels, $date);
+      $link = new Link($url, $title, $desc, $labels, $date);
+      print_r($link);
       // save
 
       return new Response('Link '.$link->hash().' created', 201);
