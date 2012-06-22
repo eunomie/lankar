@@ -77,14 +77,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
       }
       $date = date("d F Y H:m:s");
       $link = new Link($url, $title, $desc, $labels, $date);
-      $arr = $link->asArray();
-      $app['db']->insert('links', array(
-        '"url"'    => $arr['url'],
-        '"title"'  => $arr['title'],
-        '"hash"'   => $arr['hash'],
-        '"desc"'   => $arr['desc'],
-        '"hash"'   => $arr['hash']
-      ));
+      $app['db']->insert('links', $link->asArray());
 
       return new Response('Link '.$link->hash().' created', 201);
     });

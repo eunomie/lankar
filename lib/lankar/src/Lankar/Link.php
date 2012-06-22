@@ -6,20 +6,13 @@ use Lankar\UrlUtils;
 use Lankar\HashUtils;
 
 
-/** @Entity **/
 class Link {
-  /** @Id @GeneratedValue @Column(type="integer") **/
   protected $id;
-  /** @Column(type="string") **/
   protected $url;
-  /** @Column(type="string") **/
   protected $title;
-  /** @Column(type="string") **/
   protected $hash;
-  /** @Column(type="text") **/
   protected $desc;
-  //protected $labels;
-  /** @Column(type="string") **/
+  protected $labels;
   protected $date;
   
 
@@ -28,7 +21,7 @@ class Link {
     $this->title = $title;
     $this->hash = HashUtils::small($this->url);
     $this->desc = $desc;
-    $this->labels = array(); //$labels;
+    $this->labels = $labels;
     $this->date = $date;
   }
 
@@ -38,12 +31,12 @@ class Link {
 
 	public function asArray() {
 		return array(
-			'url'    => $this->url,
-      'title'  => $this->title,
-      'hash'   => $this->hash,
-      'desc'   => $this->desc,
-      'labels' => $this->labels,
-      'hash'   => $this->hash
+			'"url"'    => $this->url,
+      '"title"'  => $this->title,
+      '"hash"'   => $this->hash,
+      '"desc"'   => $this->desc,
+      //'"labels"' => $this->labels,
+      '"date"'   => $this->date
 		);
 	}
 }
