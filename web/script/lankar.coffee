@@ -49,6 +49,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
       'method': 'POST'
       'url': 'lankar.php/link'
       'data': 'url=' + encodeURIComponent($scope.form.url) +
+        '&title=' + encodeURIComponent($scope.form.title) +
         '&desc=' + encodeURIComponent($scope.form.desc) +
         '&tags=' + encodeURIComponent($scope.form.tags)
       'headers': {
