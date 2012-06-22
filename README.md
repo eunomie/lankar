@@ -36,3 +36,7 @@ ToDo
 * add functionnalities on 'go' to add some url shortner functions (clicks, referer, etc)
 * use twig to render html/partial pages
  * and add localisation
+
+Done
+----
+
