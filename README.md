@@ -21,6 +21,8 @@ List of technologies or programs or libraries in Länkar :
 ToDo
 ----
 
+* use real date
+* paginate with doctrine
 * improve debug mode using coffeescript and less js compiler
 * tags (model, db, ui)
  * auto complete (bootstrap)
