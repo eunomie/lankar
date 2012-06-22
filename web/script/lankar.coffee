@@ -27,7 +27,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
   url = decodeURIComponent($location.search().url || '')
   title = decodeURIComponent($location.search().title || '')
   desc = ''
-  desc = title + '\n=\n[' + title + '](' + url + ')' if url != '' and title != ''
+  desc = title + '\n---\n[' + title + '](' + url + ')' if url != '' and title != ''
   master = {
     'url': url
     'title': title
