@@ -56,7 +56,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).success (data, status) ->
-      $location.path '/links/1'
+      $location.search(null) and $location.path '/links/1'
     .error (data, status) ->
       alert('fail')
     master = $scope.form
