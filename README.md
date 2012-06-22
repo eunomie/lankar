@@ -33,6 +33,9 @@ ToDo
 * use twig to render html/partial pages
  * and add localisation
 * install documentation
+* migration
+ * from bookmarks
+ * from shaarli
 
 Done
 ----
