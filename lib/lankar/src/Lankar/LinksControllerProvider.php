@@ -9,7 +9,6 @@ use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Lankar\LinksCollection;
 use Lankar\Link;
 
 class LinksControllerProvider implements ControllerProviderInterface {
