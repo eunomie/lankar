@@ -19,7 +19,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
 
     $controllers->get('/links/{pagenumber}', function(Request $request) use ($app) {
       $pagenumber = (int)$request->attributes->get('pagenumber');
-      $query = 'SELECT "id" from links order by "created_at" desc'; // order by date
+      $query = 'SELECT "id" from links order by "created_at" desc';
       $res = $app['db']->fetchAll($query);
       $count = count($res);
       $start = min(($pagenumber - 1) * $this->linksPerPage, $count);
