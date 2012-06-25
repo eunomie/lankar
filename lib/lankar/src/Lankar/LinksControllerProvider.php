@@ -12,26 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Lankar\Link;
 
 class LinksControllerProvider implements ControllerProviderInterface {
+  private $linksPerPage = 3;
+
   public function connect(Application $app) {
     $controllers = $app['controllers_factory'];
 
     $controllers->get('/links/{pagenumber}', function(Request $request) use ($app) {
       $pagenumber = (int)$request->attributes->get('pagenumber');
-      $query = 'SELECT "id" from links'; // order by date
+      $query = 'SELECT "id" from links order by "created_at" desc'; // order by date
       $res = $app['db']->fetchAll($query);
       $count = count($res);
-      $start = min(($pagenumber - 1) * 10, $count);
-      $stop = min($pagenumber * 10 + 1, $count);
+      $start = min(($pagenumber - 1) * $this->linksPerPage, $count);
+      $stop = min($pagenumber * $this->linksPerPage, $count);
       $linksid = array();
       for ($i = $start; $i < $stop; $i++) {
         array_push($linksid, intval($res[$i]['id']));
       }
-      $stmt = $app['db']->executeQuery('SELECT "id", "url", "title", "hash", "desc", "date" from links where "id" in (?)', array($linksid), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
+      $stmt = $app['db']->executeQuery('SELECT "id", "url", "title", "hash", "desc", "created_at" from links where "id" in (?)', array($linksid), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
       $links = $stmt->fetchAll();
       return $app->json(array(
         'links' => $links,
         'pagenumber' => $pagenumber,
-        'total' => count($count / 10)
+        'total' => ceil($count / $this->linksPerPage)
       ));
     });
 
@@ -45,7 +47,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
 
     $controllers->get('/link/{hashOrUrl}', function(Request $request) use ($app) {
       $hashOrUrl = $request->attributes->get('hashOrUrl');
-      $query = 'SELECT "id", "url", "title", "hash", "desc", "date" from links';
+      $query = 'SELECT "id", "url", "title", "hash", "desc", "created_at" from links';
       if (strlen($hashOrUrl) == 6 && 'http' != substr($hashOrUrl, 0, strlen('http'))) {
         $query .= ' where "hash" = ?';
       } else {
@@ -74,7 +76,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
       } else {
         $labels = split('/[ ,]+/', $labels);
       }
-      $date = date("d F Y H:m:s");
+      $date = date("Y-m-d H:i:s");
       $link = new Link($url, $title, $desc, $labels, $date);
       $app['db']->insert('links', $link->asArray());
 

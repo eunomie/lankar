@@ -36,7 +36,7 @@ class Link {
       '"hash"'   => $this->hash,
       '"desc"'   => $this->desc,
       //'"labels"' => $this->labels,
-      '"date"'   => $this->date
+      '"created_at"'   => $this->date
 		);
 	}
 }
