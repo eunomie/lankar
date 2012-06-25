@@ -28,10 +28,37 @@ class LinksControllerProvider implements ControllerProviderInterface {
       for ($i = $start; $i < $stop; $i++) {
         array_push($linksid, intval($res[$i]['id']));
       }
-      $stmt = $app['db']->executeQuery('SELECT "id", "url", "title", "hash", "desc", "created_at" from links where "id" in (?)', array($linksid), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
-      $links = $stmt->fetchAll();
+      $selectquery = <<<EOF
+SELECT
+  links."id", links."url", links."title", links."hash", links."desc", links."created_at",
+  tags."name"
+FROM links LEFT OUTER JOIN
+  link_tags INNER JOIN
+    tags ON link_tags.tag_id = tags.id
+  ON links.id = link_tags.link_id
+WHERE
+  links."id" in (?)
+order by created_at desc
+EOF;
+      $stmt = $app['db']->executeQuery($selectquery, array($linksid), array(\Doctrine\DBAL\Connection::PARAM_INT_ARRAY));
+      $dblinks = $stmt->fetchAll();
+      $links = array();
+      foreach ($dblinks as $link) {
+        $key = $link['id'];
+        if (!array_key_exists($key, $links)) {
+          $links[$key] = $link;
+          $links[$key]['labels'] = array();
+        }
+        if (isset($link['name'])) {
+          array_push($links[$key]['labels'], $link['name']);
+        }
+      }
+      $arrlinks = array();
+      foreach ($links as $key => $value) {
+        array_push($arrlinks, $value);
+      }
       return $app->json(array(
-        'links' => $links,
+        'links' => $arrlinks,
         'pagenumber' => $pagenumber,
         'total' => ceil($count / $this->linksPerPage)
       ));
