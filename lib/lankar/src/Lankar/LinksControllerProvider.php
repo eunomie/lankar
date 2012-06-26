@@ -22,6 +22,13 @@ class LinksControllerProvider implements ControllerProviderInterface {
       $query = 'SELECT "id" from links order by "created_at" desc';
       $res = $app['db']->fetchAll($query);
       $count = count($res);
+      if ($count == 0) {
+        return $app->json(array(
+        'links' => array(),
+        'pagenumber' => 1,
+        'total' => 1
+      ));
+      }
       $start = min(($pagenumber - 1) * $this->linksPerPage, $count);
       $stop = min($pagenumber * $this->linksPerPage, $count);
       $linksid = array();
