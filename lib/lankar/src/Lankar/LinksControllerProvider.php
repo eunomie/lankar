@@ -37,7 +37,7 @@ class LinksControllerProvider implements ControllerProviderInterface {
       }
       $selectquery = <<<EOF
 SELECT
-  links."id", links."url", links."title", links."hash", links."desc", links."created_at",
+  links."id", links."url", links."title", links."hash", links."description", links."created_at",
   tags."name"
 FROM links LEFT OUTER JOIN
   link_tags INNER JOIN
@@ -81,7 +81,7 @@ EOF;
 
     $controllers->get('/link/{hashOrUrl}', function(Request $request) use ($app) {
       $hashOrUrl = $request->attributes->get('hashOrUrl');
-      $query = 'SELECT "id", "url", "title", "hash", "desc", "created_at" from links';
+      $query = 'SELECT "id", "url", "title", "hash", "description", "created_at" from links';
       if (strlen($hashOrUrl) == 6 && 'http' != substr($hashOrUrl, 0, strlen('http'))) {
         $query .= ' where "hash" = ?';
       } else {
@@ -96,7 +96,7 @@ EOF;
       if (!$url = $request->get('url')) {
         return new Response('Missing url', 400);
       }
-      $desc = $request->get('desc');
+      $desc = $request->get('description');
       if (!isset($desc)) {
         $desc = '';
       }
@@ -105,7 +105,7 @@ EOF;
         $title = '';
       }
       $labels = $request->get('tags');
-      if (!isset($desc)) {
+      if (!isset($labels)) {
         $labels = array();
       } else {
         $labels = explode(',', $labels);

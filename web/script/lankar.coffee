@@ -31,7 +31,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
   master = {
     'url': url
     'title': title
-    'desc': desc
+    'description': desc
     'tags': ''
   }
   $scope.$watch 'form.tags', () ->
@@ -50,7 +50,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
       'url': 'lankar.php/link'
       'data': 'url=' + encodeURIComponent($scope.form.url) +
         '&title=' + encodeURIComponent($scope.form.title) +
-        '&desc=' + encodeURIComponent($scope.form.desc) +
+        '&description=' + encodeURIComponent($scope.form.description) +
         '&tags=' + encodeURIComponent($scope.form.labels)
       'headers': {
         'Content-Type': 'application/x-www-form-urlencoded'
