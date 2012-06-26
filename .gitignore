@@ -4,3 +4,5 @@ vendor
 web/script/lankar.js
 web/script/bookmarklet.js
 config/config.php
+*.sublime-project
+*.sublime-workspace
