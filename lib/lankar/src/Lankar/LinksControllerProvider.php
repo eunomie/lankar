@@ -98,14 +98,46 @@ EOF;
         $title = '';
       }
       $labels = $request->get('tags');
-      if (!isset($desc) || !is_array($labels)) {
+      if (!isset($desc)) {
         $labels = array();
       } else {
-        $labels = split('/[ ,]+/', $labels);
+        $labels = explode(',', $labels);
       }
+
       $date = date("Y-m-d H:i:s");
       $link = new Link($url, $title, $desc, $labels, $date);
+
+      # check if exists
+      $exists = $app['db']->fetchAll('SELECT id from links where hash = ?', array($link->hash()));
+      if (isset($exists) && count($exists) > 0) {
+        return new Response('Yet exists', 409);
+      }
+
+      # store labels
+      $dblabels = $app['db']->fetchAll('SELECT "id", "name" from tags');
+      $dblabelsid = array();
+      foreach ($dblabels as $label) {
+        $dblabelsid[$label['name']] = $label['id'];
+      }
+
+      $labelstocreate = array();
+      $labelstostore = array();
+      foreach ($labels as $label) {
+        if (!array_key_exists($label, $dblabelsid)) {
+          $app['db']->insert('tags', array("name" => $label));
+          $data = $app['db']->fetchAssoc('SELECT id from tags where "name" = ?', array($label));
+          $dblabelsid[$label] = $data['id'];
+        }
+        array_push($labelstostore, $dblabelsid[$label]);
+      }
+
       $app['db']->insert('links', $link->asArray());
+      $exists = $app['db']->fetchAssoc('SELECT id from links where hash = ?', array($link->hash()));
+      $id = $exists['id'];
+
+      for($i = 0; $i < count($labelstostore); $i++) {
+        $app['db']->insert('link_tags', array('link_id' => $id, 'tag_id' => $labelstostore[$i]));
+      }
 
       return new Response('Link '.$link->hash().' created', 201);
     });
