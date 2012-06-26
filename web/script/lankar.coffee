@@ -51,7 +51,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
       'data': 'url=' + encodeURIComponent($scope.form.url) +
         '&title=' + encodeURIComponent($scope.form.title) +
         '&desc=' + encodeURIComponent($scope.form.desc) +
-        '&tags=' + encodeURIComponent($scope.form.tags)
+        '&tags=' + encodeURIComponent($scope.form.labels)
       'headers': {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
