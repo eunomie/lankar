@@ -44,7 +44,7 @@ angular.module 'lankar', [], ($compileProvider, $routeProvider, $locationProvide
 # This controller is used to render the links list with
 # pagination.
 this.LinksCtrl = ($scope, $http, $routeParams) ->
-  $http.get('lankar.php/links/' + $routeParams.page).success (data) ->
+  $http.get("lankar.php/links/#{ $routeParams.page }").success (data) ->
     $scope.links = data.links
     $scope.total = parseInt data.total
     $scope.page = parseInt $routeParams.page
@@ -64,7 +64,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
   title = decodeURIComponent($location.search().title || '')
   desc = ''
   # and construct a default description with title and link in markdown
-  desc = '###' + title + '\n\n[' + title + '](' + url + ')' if url != '' and title != ''
+  desc = '###' + "#{ title }\n\n[#{ title }](#{ url })" if url != '' and title != ''
   # Store the default configuration. This allow to track changes and enable/disable buttons.
   master = {
     'url': url
