@@ -75,7 +75,7 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
   }
   # Each link can has some tags. Removes duplicated entries and store
   # single labels to be previewed.
-  $scope.$watch 'form.tags', () ->
+  $scope.$watch 'form.tags', ->
     labels = $scope.form.tags.split /[ ,]+/
     tags = []
     angular.forEach labels, (value) ->
@@ -83,12 +83,12 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
     $scope.form.labels = tags
 
   # Cancel form by setting all fields to default value.
-  $scope.cancel = () ->
+  $scope.cancel = ->
     $scope.form = angular.copy master
 
   # Save the link, send datas to the server and redirect to the links list
   # if all is ok.
-  $scope.save = () ->
+  $scope.save = ->
     $http({
       'method': 'POST'
       'url': 'lankar.php/link'
@@ -106,10 +106,10 @@ this.addCtrl = ($scope, $http, $routeParams, $location) ->
     master = $scope.form
     $scope.cancel()
 
-  $scope.isCancelDisabled = () ->
+  $scope.isCancelDisabled = ->
     angular.equals master, $scope.form
 
-  $scope.isSaveDisabled = () ->
+  $scope.isSaveDisabled = ->
     $scope.linkForm.$invalid or angular.equals master, $scope.form
 
   $scope.cancel()
