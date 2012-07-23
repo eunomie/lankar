@@ -25,7 +25,8 @@ angular.module 'lankar', [], ($compileProvider, $routeProvider, $locationProvide
     converter = new Markdown.getSanitizingConverter()
     (scope, element, attrs) ->
       scope.$watch (scope) ->
-        converter.makeHtml(scope.$eval(attrs.compile))
+        content = scope.$eval(attrs.compile)
+        converter.makeHtml content if content?
       , (value) ->
         element.html value
         $compile(element.contents())(scope)
